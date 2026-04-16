@@ -1,0 +1,81 @@
+[
+  {
+    "title": "HomeLab",
+    "services": [
+      {
+        "name": "Grafana",
+        "url": "http://devhome.home-env.nxw.name:6842"
+      },
+      {
+        "name": "Qbit",
+        "url": "http://devhome.home-env.nxw.name:8080"
+      },
+      {
+        "name": "MetacubeXD",
+        "url": "http://devhome.home-env.nxw.name:28192"
+      },
+      {
+        "name": "NekoMaster",
+        "url": "http://devhome.home-env.nxw.name:20482"
+      },
+      {
+        "name": "Cloudreve",
+        "url": "http://devhome.home-env.nxw.name:5212"
+      },
+      {
+        "name": "DDNS",
+        "url": "http://devhome.home-env.nxw.name:9876"
+      },
+      {
+        "name": "NewAPI",
+        "url": "http://devhome.home-env.nxw.name:34875"
+      },
+      {
+        "name": "ProxmoxVE",
+        "url": "https://pve.home-env.nxw.name:8006"
+      },
+      {
+        "name": "OpenList",
+        "url": "http://devhome.home-env.nxw.name:5244"
+      },
+      {
+        "name": "Prometheus",
+        "url": "http://devhome.home-env.nxw.name:9090"
+      }
+    ]
+  },
+  {
+    "title": "Ant Group",
+    "services": [
+      {
+        "name": "noVNC",
+        "url": "http://devant.ant-env.nxw.name:6080/vnc.html"
+      },
+      {
+        "name": "NekoMaster",
+        "url": "http://devant.ant-env.nxw.name:20482"
+      },
+      {
+        "name": "Prometheus",
+        "url": "http://devant.ant-env.nxw.name:9090"
+      },
+      {
+        "name": "AdGuard",
+        "url": "http://devant.ant-env.nxw.name:11053"
+      },
+      {
+        "name": "CopilotDisplay",
+        "url": "http://devant.ant-env.nxw.name:8420"
+      }
+    ]
+  },
+  {
+    "title": "Residential",
+    "services": [
+      {
+        "name": "AdGuard",
+        "url": "http://devaa.usres-env.nxw.name:11053"
+      }
+    ]
+  }
+]
