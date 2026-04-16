@@ -333,7 +333,7 @@
 
         <footer class="footnote">
             <p><strong>External links</strong> open in a new tab.</p>
-            <p>&copy; 2024-2025 Xavier's Services. All rights reserved.</p>
+            <p id="footer-copyright"></p>
         </footer>
     </div>
 
@@ -470,6 +470,12 @@
             main.appendChild(state);
         }
 
+        function renderFooterYear() {
+            const footer = document.getElementById("footer-copyright");
+            const currentYear = new Date().getFullYear();
+            footer.textContent = `© 2024-${currentYear} Xavier's Services. All rights reserved.`;
+        }
+
         async function loadServices() {
             try {
                 const response = await fetch("./services.json", { cache: "no-store" });
@@ -504,6 +510,7 @@
             }
         }
 
+        renderFooterYear();
         loadServices();
     </script>
 </body>
