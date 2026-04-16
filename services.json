@@ -79,6 +79,7 @@
       },
       {
         "name": "CopilotDisplay",
+        "icon": "./icons/codis.svg",
         "url": "http://devant.ant-env.nxw.name:8420"
       }
     ]
