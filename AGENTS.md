@@ -1,150 +1,157 @@
-Concise rules for building accessible, fast, delightful UIs. Use MUST/SHOULD/NEVER to guide decisions.
+# Add Service SOP
 
-## Interactions
+This page reads service data from `services.json` and renders cards dynamically in `index.html`.
 
-### Keyboard
+## 1. Add the service to `services.json`
 
-- MUST: Full keyboard support per [WAI-ARIA APG](https://www.w3.org/WAI/ARIA/apg/patterns/)
-- MUST: Visible focus rings (`:focus-visible`; group with `:focus-within`)
-- MUST: Manage focus (trap, move, return) per APG patterns
-- NEVER: `outline: none` without visible focus replacement
+`services.json` is a top-level array of groups.
 
-### Targets & Input
+Each group looks like:
 
-- MUST: Hit target ≥24px (mobile ≥44px); if visual <24px, expand hit area
-- MUST: Mobile `<input>` font-size ≥16px to prevent iOS zoom
-- NEVER: Disable browser zoom (`user-scalable=no`, `maximum-scale=1`)
-- MUST: `touch-action: manipulation` to prevent double-tap zoom
-- SHOULD: Set `-webkit-tap-highlight-color` to match design
+```json
+{
+  "title": "HomeLab",
+  "services": [
+    {
+      "name": "Grafana",
+      "icon": "./icons/grafana.svg",
+      "url": "http://devhome.home-env.nxw.name:6842"
+    }
+  ]
+}
+```
 
-### Forms
+Rules:
 
-- MUST: Hydration-safe inputs (no lost focus/value)
-- NEVER: Block paste in `<input>`/`<textarea>`
-- MUST: Loading buttons show spinner and keep original label
-- MUST: Enter submits focused input; in `<textarea>`, ⌘/Ctrl+Enter submits
-- MUST: Keep submit enabled until request starts; then disable with spinner
-- MUST: Accept free text, validate after—don't block typing
-- MUST: Allow incomplete form submission to surface validation
-- MUST: Errors inline next to fields; on submit, focus first error
-- MUST: `autocomplete` + meaningful `name`; correct `type` and `inputmode`
-- SHOULD: Disable spellcheck for emails/codes/usernames
-- SHOULD: Placeholders end with `…` and show example pattern
-- MUST: Warn on unsaved changes before navigation
-- MUST: Compatible with password managers & 2FA; allow pasting codes
-- MUST: Trim values to handle text expansion trailing spaces
-- MUST: No dead zones on checkboxes/radios; label+control share one hit target
+- `title`: Environment name shown on the page.
+- `services`: Array of service entries for that environment.
+- `name`: Display name of the service.
+- `url`: Full target URL.
+- `icon`: Optional local file path under `./icons/`.
 
-### State & Navigation
+Notes:
 
-- MUST: URL reflects state (deep-link filters/tabs/pagination/expanded panels)
-- MUST: Back/Forward restores scroll position
-- MUST: Links use `<a>`/`<Link>` for navigation (support Cmd/Ctrl/middle-click)
-- NEVER: Use `<div onClick>` for navigation
+- `host`, `scheme`, and `endpoint` are not stored in JSON anymore.
+- The page derives those values from `url` automatically.
+- If `icon` is omitted, the card falls back to a generated monogram.
 
-### Feedback
+## 2. Decide whether to add to an existing group or a new group
 
-- SHOULD: Optimistic UI; reconcile on response; on failure rollback or offer Undo
-- MUST: Confirm destructive actions or provide Undo window
-- MUST: Use polite `aria-live` for toasts/inline validation
-- SHOULD: Ellipsis (`…`) for options opening follow-ups ("Rename…") and loading states ("Loading…")
+- If the environment already exists, append the new service object to that group's `services` array.
+- If it is a new environment, add a new group object with a new `title`.
 
-### Touch & Drag
+Example new service:
 
-- MUST: Generous targets, clear affordances; avoid finicky interactions
-- MUST: Delay first tooltip; subsequent peers instant
-- MUST: `overscroll-behavior: contain` in modals/drawers
-- MUST: During drag, disable text selection and set `inert` on dragged elements
-- MUST: If it looks clickable, it must be clickable
+```json
+{
+  "name": "ExampleApp",
+  "url": "https://example.home-env.nxw.name:1234"
+}
+```
 
-### Autofocus
+## 3. Find an icon
 
-- SHOULD: Autofocus on desktop with single primary input; rarely on mobile
+Preferred order:
 
-## Animation
+1. Official repo or official site asset
+2. Existing open icon source already used here
+3. No icon, leave it blank and use the generated fallback
 
-- MUST: Honor `prefers-reduced-motion` (provide reduced variant or disable)
-- SHOULD: Prefer CSS > Web Animations API > JS libraries
-- MUST: Animate compositor-friendly props (`transform`, `opacity`) only
-- NEVER: Animate layout props (`top`, `left`, `width`, `height`)
-- NEVER: `transition: all`—list properties explicitly
-- SHOULD: Animate only to clarify cause/effect or add deliberate delight
-- SHOULD: Choose easing to match the change (size/distance/trigger)
-- MUST: Animations interruptible and input-driven (no autoplay)
-- MUST: Correct `transform-origin` (motion starts where it "physically" should)
-- MUST: SVG transforms on `<g>` wrapper with `transform-box: fill-box`
+Good places to check:
 
-## Layout
+- GitHub repo contents
+- Repo `public/`, `assets/`, `docs/`, `app/images/`, `web/public/`
+- Official site favicon, logo, or SVG assets
 
-- SHOULD: Optical alignment; adjust ±1px when perception beats geometry
-- MUST: Deliberate alignment to grid/baseline/edges—no accidental placement
-- SHOULD: Balance icon/text lockups (weight/size/spacing/color)
-- MUST: Verify mobile, laptop, ultra-wide (simulate ultra-wide at 50% zoom)
-- MUST: Respect safe areas (`env(safe-area-inset-*)`)
-- MUST: Avoid unwanted scrollbars; fix overflows
-- SHOULD: Flex/grid over JS measurement for layout
+Typical asset types:
 
-## Content & Accessibility
+- `.svg`
+- `.png`
+- `.ico`
 
-- SHOULD: Inline help first; tooltips last resort
-- MUST: Skeletons mirror final content to avoid layout shift
-- MUST: `<title>` matches current context
-- MUST: No dead ends; always offer next step/recovery
-- MUST: Design empty/sparse/dense/error states
-- SHOULD: Curly quotes (" "); avoid widows/orphans (`text-wrap: balance`)
-- MUST: `font-variant-numeric: tabular-nums` for number comparisons
-- MUST: Redundant status cues (not color-only); icons have text labels
-- MUST: Accessible names exist even when visuals omit labels
-- MUST: Use `…` character (not `...`)
-- MUST: `scroll-margin-top` on headings; "Skip to content" link; hierarchical `<h1>`–`<h6>`
-- MUST: Resilient to user-generated content (short/avg/very long)
-- MUST: Locale-aware dates/times/numbers (`Intl.DateTimeFormat`, `Intl.NumberFormat`)
-- SHOULD: `translate="no"` on brand names, code tokens, & identifiers to prevent garbled auto-translation
-- MUST: Accurate `aria-label`; decorative elements `aria-hidden`
-- MUST: Icon-only buttons have descriptive `aria-label`
-- MUST: Prefer native semantics (`button`, `a`, `label`, `table`) before ARIA
-- MUST: Non-breaking spaces: `10&nbsp;MB`, `⌘&nbsp;K`, brand names
+Prefer:
 
-## Content Handling
+- SVG when available
+- Clean square-ish logo
+- Non-white-on-transparent assets for this light theme
 
-- MUST: Text containers handle long content (`truncate`, `line-clamp-*`, `break-words`)
-- MUST: Flex children need `min-w-0` to allow truncation
-- MUST: Handle empty states—no broken UI for empty strings/arrays
+## 4. Download the icon locally
 
-## Performance
+Store all icons in the repo under `icons/`.
 
-- SHOULD: Test iOS Low Power Mode and macOS Safari
-- MUST: Measure reliably (disable extensions that skew runtime)
-- MUST: Track and minimize re-renders (React DevTools/React Scan)
-- MUST: Profile with CPU/network throttling
-- MUST: Batch layout reads/writes; avoid reflows/repaints
-- MUST: Mutations (`POST`/`PATCH`/`DELETE`) target <500ms
-- SHOULD: Prefer uncontrolled inputs; controlled inputs cheap per keystroke
-- MUST: Virtualize large lists (>50 items)
-- MUST: Preload above-fold images; lazy-load the rest
-- MUST: Prevent CLS (explicit image dimensions)
-- SHOULD: `<link rel="preconnect">` for CDN domains
-- SHOULD: Critical fonts: `<link rel="preload" as="font">` with `font-display: swap`
+Example:
 
-## Dark Mode & Theming
+```bash
+curl -fL https://raw.githubusercontent.com/example/project/main/public/logo.svg -o icons/example.svg
+```
 
-- MUST: `color-scheme: dark` on `<html>` for dark themes
-- SHOULD: `<meta name="theme-color">` matches page background
-- MUST: Native `<select>`: explicit `background-color` and `color` (Windows fix)
+Then reference it from `services.json`:
 
-## Hydration
+```json
+{
+  "name": "ExampleApp",
+  "icon": "./icons/example.svg",
+  "url": "https://example.home-env.nxw.name:1234"
+}
+```
 
-- MUST: Inputs with `value` need `onChange` (or use `defaultValue`)
-- SHOULD: Guard date/time rendering against hydration mismatch
+## 5. If no good icon exists
 
-## Design
+- Omit the `icon` field
+- Do not add a broken or low-quality asset just to fill the slot
 
-- SHOULD: Layered shadows (ambient + direct)
-- SHOULD: Crisp edges via semi-transparent borders + shadows
-- SHOULD: Nested radii: child ≤ parent; concentric
-- SHOULD: Hue consistency: tint borders/shadows/text toward bg hue
-- MUST: Accessible charts (color-blind-friendly palettes)
-- MUST: Meet contrast—prefer [APCA](https://apcacontrast.com/) over WCAG 2
-- MUST: Increase contrast on `:hover`/`:active`/`:focus`
-- SHOULD: Match browser UI to bg
-- SHOULD: Avoid dark color gradient banding (use background images when needed)
+Example:
+
+```json
+{
+  "name": "InternalTool",
+  "url": "http://internal.home-env.nxw.name:9999"
+}
+```
+
+The page will render a fallback monogram automatically.
+
+## 6. Preview locally
+
+From the repo root:
+
+```bash
+python3 -m http.server 8000
+```
+
+Open:
+
+```text
+http://localhost:8000
+```
+
+Check:
+
+- The new card appears in the right environment section
+- The icon loads correctly
+- The host/protocol/endpoint text derived from `url` looks right
+- Mobile layout still looks acceptable
+
+## 7. Commit changes
+
+Typical files changed:
+
+- `services.json`
+- `icons/<file>`
+- `index.html` only if rendering behavior or styling changes
+
+Example:
+
+```bash
+git add services.json icons/example.svg
+git commit -s -m "Add ExampleApp service"
+git push origin main
+```
+
+## 8. Quick checklist
+
+- Service added to the correct group in `services.json`
+- URL is correct
+- Icon saved locally under `icons/` or intentionally omitted
+- Page renders correctly in preview
+- Commit includes only intended files
