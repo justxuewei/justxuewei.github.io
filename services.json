@@ -4,42 +4,52 @@
     "services": [
       {
         "name": "Grafana",
+        "icon": "./icons/grafana.svg",
         "url": "http://devhome.home-env.nxw.name:6842"
       },
       {
         "name": "Qbit",
+        "icon": "./icons/qbittorrent.svg",
         "url": "http://devhome.home-env.nxw.name:8080"
       },
       {
         "name": "MetacubeXD",
+        "icon": "./icons/metacubexd.svg",
         "url": "http://devhome.home-env.nxw.name:28192"
       },
       {
         "name": "NekoMaster",
+        "icon": "./icons/neko-master.png",
         "url": "http://devhome.home-env.nxw.name:20482"
       },
       {
         "name": "Cloudreve",
+        "icon": "./icons/cloudreve.svg",
         "url": "http://devhome.home-env.nxw.name:5212"
       },
       {
         "name": "DDNS",
+        "icon": "./icons/ddns-go.ico",
         "url": "http://devhome.home-env.nxw.name:9876"
       },
       {
         "name": "NewAPI",
+        "icon": "./icons/new-api.png",
         "url": "http://devhome.home-env.nxw.name:34875"
       },
       {
         "name": "ProxmoxVE",
+        "icon": "./icons/proxmox.svg",
         "url": "https://pve.home-env.nxw.name:8006"
       },
       {
         "name": "OpenList",
+        "icon": "./icons/openlist.svg",
         "url": "http://devhome.home-env.nxw.name:5244"
       },
       {
         "name": "Prometheus",
+        "icon": "./icons/prometheus.svg",
         "url": "http://devhome.home-env.nxw.name:9090"
       }
     ]
@@ -49,18 +59,22 @@
     "services": [
       {
         "name": "noVNC",
+        "icon": "./icons/novnc.svg",
         "url": "http://devant.ant-env.nxw.name:6080/vnc.html"
       },
       {
         "name": "NekoMaster",
+        "icon": "./icons/neko-master.png",
         "url": "http://devant.ant-env.nxw.name:20482"
       },
       {
         "name": "Prometheus",
+        "icon": "./icons/prometheus.svg",
         "url": "http://devant.ant-env.nxw.name:9090"
       },
       {
         "name": "AdGuard",
+        "icon": "./icons/adguard-home.svg",
         "url": "http://devant.ant-env.nxw.name:11053"
       },
       {
@@ -74,6 +88,7 @@
     "services": [
       {
         "name": "AdGuard",
+        "icon": "./icons/adguard-home.svg",
         "url": "http://devaa.usres-env.nxw.name:11053"
       }
     ]

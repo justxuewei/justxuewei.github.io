@@ -218,6 +218,36 @@
             touch-action: manipulation;
         }
 
+        .service-top {
+            display: grid;
+            grid-template-columns: 38px minmax(0, 1fr);
+            gap: 0.7rem;
+            align-items: center;
+        }
+
+        .service-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: linear-gradient(180deg, #f6f8fd 0%, #eef3fb 100%);
+            color: var(--accent-deep);
+            font-size: 0.76rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            flex: none;
+            overflow: hidden;
+        }
+
+        .service-icon img {
+            width: 72%;
+            height: 72%;
+            object-fit: contain;
+        }
+
         .service-card:hover,
         .service-card:focus-visible {
             border-color: #aac0f5;
@@ -362,6 +392,24 @@
             };
         }
 
+        function getServiceInitials(name) {
+            const words = String(name).trim().split(/[\s_-]+/).filter(Boolean);
+            if (!words.length) {
+                return "?";
+            }
+
+            const capitals = String(name).match(/[A-Z0-9]/g) || [];
+            if (capitals.length >= 2) {
+                return capitals.slice(0, 2).join("");
+            }
+
+            if (words.length >= 2) {
+                return `${words[0][0]}${words[1][0]}`.toUpperCase();
+            }
+
+            return words[0].slice(0, 2).toUpperCase();
+        }
+
         function createServiceCard(service) {
             const details = getServiceDetails(service);
             const card = document.createElement("a");
@@ -371,9 +419,27 @@
             card.rel = "noreferrer noopener";
             card.setAttribute("aria-label", `Open ${service.name} in a new tab`);
 
+            const top = document.createElement("div");
+            top.className = "service-top";
+
+            const icon = document.createElement("div");
+            icon.className = "service-icon";
+            icon.setAttribute("aria-hidden", "true");
+
+            if (service.icon) {
+                const image = document.createElement("img");
+                image.src = service.icon;
+                image.alt = "";
+                icon.appendChild(image);
+            } else {
+                icon.textContent = getServiceInitials(service.name);
+            }
+
             const name = document.createElement("h3");
             name.className = "service-name";
             name.textContent = service.name;
+
+            top.append(icon, name);
 
             const host = document.createElement("p");
             host.className = "service-host";
@@ -383,7 +449,7 @@
             endpoint.className = "service-endpoint";
             endpoint.textContent = `${details.scheme} · ${details.endpoint}`;
 
-            card.append(name, host, endpoint);
+            card.append(top, host, endpoint);
             return card;
         }
 
