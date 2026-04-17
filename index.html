@@ -165,7 +165,17 @@
         }
 
         .status-block {
+            display: inline-flex;
+            flex-wrap: nowrap;
+            align-items: center;
+            gap: 0.5rem;
             width: fit-content;
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        .status-block img {
+            flex: none;
         }
 
         main {
@@ -348,12 +358,13 @@
         <header class="masthead">
             <div class="title-block">
                 <h1 translate="no">Xavier's Services</h1>
-                <p class="title-intro" id="title-intro"></p>
-                <div class="header-meta" id="header-meta" aria-label="Service statistics"></div>
                 <div class="status-block" aria-label="Status">
                     <img src="https://healthchecks.io/badge/ceb5a174-ca12-4e29-a004-b8bcc4/5aLzBxll/rclone.svg"
                         alt="Healthchecks badge for rclone status">
+                    <img src="https://healthchecks.io/badge/ceb5a174-ca12-4e29-a004-b8bcc4/6SmW8tbH-2/machine.svg" alt="machine">
                 </div>
+                <p class="title-intro" id="title-intro"></p>
+                <div class="header-meta" id="header-meta" aria-label="Service statistics"></div>
             </div>
         </header>
 
