@@ -3,6 +3,11 @@
     "title": "HomeLab",
     "services": [
       {
+        "name": "ProxmoxVE",
+        "icon": "./icons/proxmox.svg",
+        "url": "https://pve.home-env.nxw.name:8006"
+      },
+      {
         "name": "Grafana",
         "icon": "./icons/grafana.svg",
         "url": "http://devhome.home-env.nxw.name:6842"
@@ -38,11 +43,6 @@
         "url": "http://devhome.home-env.nxw.name:34875"
       },
       {
-        "name": "ProxmoxVE",
-        "icon": "./icons/proxmox.svg",
-        "url": "https://pve.home-env.nxw.name:8006"
-      },
-      {
         "name": "OpenList",
         "icon": "./icons/openlist.svg",
         "url": "http://devhome.home-env.nxw.name:5244"
@@ -71,11 +71,6 @@
         "name": "Prometheus",
         "icon": "./icons/prometheus.svg",
         "url": "http://devant.ant-env.nxw.name:9090"
-      },
-      {
-        "name": "AdGuard",
-        "icon": "./icons/adguard-home.svg",
-        "url": "http://devant.ant-env.nxw.name:11053"
       },
       {
         "name": "CopilotDisplay",
