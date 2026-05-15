@@ -228,6 +228,14 @@
         .banner::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
         .banner::after { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
 
+        .banner-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 0.6rem;
+        }
+
         .banner-tag {
             display: inline-flex;
             align-items: center;
@@ -237,13 +245,11 @@
             font-weight: 700;
             letter-spacing: 0.22em;
             text-transform: uppercase;
-            margin-bottom: 0.5rem;
+            min-width: 0;
         }
 
         .theme-toggle {
-            position: absolute;
-            top: 0.85rem;
-            right: 0.9rem;
+            flex: none;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
@@ -613,11 +619,13 @@
     <a class="skip-link" href="#content">skip to content</a>
     <div class="page-shell">
         <header class="banner">
-            <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
-                <span class="glyph" aria-hidden="true"></span>
-                <span class="label" id="theme-toggle-label">dark</span>
-            </button>
-            <div class="banner-tag"><span class="dot" aria-hidden="true"></span> xavier.lab — service registry</div>
+            <div class="banner-top">
+                <div class="banner-tag"><span class="dot" aria-hidden="true"></span> xavier.lab — service registry</div>
+                <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <span class="glyph" aria-hidden="true"></span>
+                    <span class="label" id="theme-toggle-label">dark</span>
+                </button>
+            </div>
             <h1 translate="no">xavier<span class="accent">/</span>services<span class="caret" aria-hidden="true"></span></h1>
             <div class="banner-meta">
                 <div class="status-block" aria-label="Status">
