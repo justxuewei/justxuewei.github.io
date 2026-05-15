@@ -1012,7 +1012,12 @@
             input.addEventListener("keydown", (e) => {
                 if (e.key === "Escape") hideRow();
             });
-            input.addEventListener("blur", hideRow);
+            document.addEventListener("mousedown", (e) => {
+                if (!row.classList.contains("is-visible")) return;
+                if (row.contains(e.target)) return;
+                if (e.target.closest(".service-card")) return;
+                hideRow();
+            });
             document.addEventListener("keydown", (e) => {
                 const isFind = (e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "f";
                 if (!isFind || isMobile()) return;
