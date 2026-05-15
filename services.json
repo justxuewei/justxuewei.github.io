@@ -1,5 +1,15 @@
 [
   {
+    "title": "Public",
+    "services": [
+      {
+        "name": "Xavier's Blog",
+        "icon": "./icons/xavier-blog.jpeg",
+        "url": "https://www.nxw.name"
+      }
+    ]
+  },
+  {
     "title": "HomeLab",
     "services": [
       {
