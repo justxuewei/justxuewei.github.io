@@ -4,377 +4,638 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#f4f6fb">
-    <title>Xavier's Services</title>
+    <meta name="theme-color" content="#0b0d0a" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f1ead8" media="(prefers-color-scheme: light)">
+    <script>
+        // apply theme before paint to avoid flash
+        (function () {
+            const saved = localStorage.getItem("theme");
+            if (saved === "light" || saved === "dark") {
+                document.documentElement.dataset.theme = saved;
+            }
+        })();
+    </script>
+    <title>xavier.lab // services</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=VT323&display=swap">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/favicon.jpeg">
     <style>
         :root {
+            color-scheme: dark;
+            --bg: #0b0d0a;
+            --bg-deep: #07090b;
+            --surface: #11140f;
+            --surface-2: #161a14;
+            --border: #2a2e25;
+            --border-strong: #3a3f33;
+            --text: #ece6d3;
+            --muted: #807a64;
+            --dim: #57523f;
+            --accent: #f5a524;
+            --accent-bright: #ffbf3d;
+            --accent-dim: #6e4a10;
+            --danger: #d65454;
+            --scanline: rgba(0, 0, 0, 0.22);
+            --vignette: rgba(0, 0, 0, 0.55);
+            --glow-1: rgba(245, 165, 36, 0.08);
+            --glow-2: rgba(245, 165, 36, 0.04);
+            --status-filter: invert(0.92) hue-rotate(180deg) saturate(1.1);
+            --container: 1080px;
+            --rule: repeating-linear-gradient(90deg,
+                    var(--border) 0 6px,
+                    transparent 6px 10px);
+        }
+
+        /* Light theme (paper printout) — applies via system preference or manual override */
+        @media (prefers-color-scheme: light) {
+            :root {
+                color-scheme: light;
+                --bg: #f1ead8;
+                --bg-deep: #e7dfc7;
+                --surface: #f6f0de;
+                --surface-2: #ede5cc;
+                --border: #c9bf9d;
+                --border-strong: #a89b73;
+                --text: #2a241a;
+                --muted: #6d6346;
+                --dim: #968a66;
+                --accent: #b8650f;
+                --accent-bright: #d9791a;
+                --accent-dim: #d9b676;
+                --danger: #a4321e;
+                --scanline: rgba(120, 90, 30, 0.06);
+                --vignette: rgba(140, 110, 50, 0.18);
+                --glow-1: rgba(184, 101, 15, 0.06);
+                --glow-2: rgba(184, 101, 15, 0.03);
+                --status-filter: contrast(0.95) saturate(0.9);
+            }
+        }
+
+        :root[data-theme="dark"] {
+            color-scheme: dark;
+            --bg: #0b0d0a;
+            --bg-deep: #07090b;
+            --surface: #11140f;
+            --surface-2: #161a14;
+            --border: #2a2e25;
+            --border-strong: #3a3f33;
+            --text: #ece6d3;
+            --muted: #807a64;
+            --dim: #57523f;
+            --accent: #f5a524;
+            --accent-bright: #ffbf3d;
+            --accent-dim: #6e4a10;
+            --danger: #d65454;
+            --scanline: rgba(0, 0, 0, 0.22);
+            --vignette: rgba(0, 0, 0, 0.55);
+            --glow-1: rgba(245, 165, 36, 0.08);
+            --glow-2: rgba(245, 165, 36, 0.04);
+            --status-filter: invert(0.92) hue-rotate(180deg) saturate(1.1);
+        }
+
+        :root[data-theme="light"] {
             color-scheme: light;
-            --bg: #f4f6fb;
-            --surface: rgba(255, 255, 255, 0.9);
-            --surface-strong: #ffffff;
-            --border: #d8dfeb;
-            --text: #172033;
-            --muted: #62718a;
-            --accent: #2f6fed;
-            --accent-deep: #1f56be;
-            --shadow: 0 18px 40px rgba(29, 45, 78, 0.08);
-            --radius-xl: 28px;
-            --radius-lg: 22px;
-            --radius-md: 16px;
-            --container: 1120px;
+            --bg: #f1ead8;
+            --bg-deep: #e7dfc7;
+            --surface: #f6f0de;
+            --surface-2: #ede5cc;
+            --border: #c9bf9d;
+            --border-strong: #a89b73;
+            --text: #2a241a;
+            --muted: #6d6346;
+            --dim: #968a66;
+            --accent: #b8650f;
+            --accent-bright: #d9791a;
+            --accent-dim: #d9b676;
+            --danger: #a4321e;
+            --scanline: rgba(120, 90, 30, 0.06);
+            --vignette: rgba(140, 110, 50, 0.18);
+            --glow-1: rgba(184, 101, 15, 0.06);
+            --glow-2: rgba(184, 101, 15, 0.03);
+            --status-filter: contrast(0.95) saturate(0.9);
         }
 
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             margin: 0;
             min-height: 100vh;
-            font-family: "Manrope", sans-serif;
+            font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 14px;
             color: var(--text);
-            background:
-                radial-gradient(circle at top left, rgba(47, 111, 237, 0.08), transparent 26rem),
-                linear-gradient(180deg, #f7f9fc 0%, var(--bg) 100%);
+            background: var(--bg);
+            background-image:
+                radial-gradient(ellipse 80% 60% at 50% -10%, var(--glow-1), transparent 70%),
+                radial-gradient(ellipse 60% 50% at 100% 100%, var(--glow-2), transparent 70%),
+                linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
+            background-attachment: fixed;
             -webkit-font-smoothing: antialiased;
             text-rendering: optimizeLegibility;
         }
 
-        a {
-            color: inherit;
+        /* Scanlines + grain — the CRT atmosphere */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            background-image: repeating-linear-gradient(0deg,
+                    var(--scanline) 0px,
+                    var(--scanline) 1px,
+                    transparent 1px,
+                    transparent 3px);
+            mix-blend-mode: multiply;
+            opacity: 0.6;
         }
 
-        img {
-            display: block;
-            max-width: 100%;
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 2;
+            background:
+                radial-gradient(ellipse at center, transparent 55%, var(--vignette) 100%);
+        }
+
+        a { color: inherit; text-decoration: none; }
+        img { display: block; max-width: 100%; }
+
+        ::selection {
+            background: var(--accent);
+            color: var(--bg-deep);
         }
 
         .skip-link {
             position: absolute;
             top: 1rem;
             left: 1rem;
-            z-index: 20;
-            padding: 0.9rem 1.1rem;
-            border-radius: 999px;
-            background: var(--accent-deep);
-            color: #fff;
-            text-decoration: none;
-            transform: translateY(-180%);
-            transition: transform 180ms ease;
+            z-index: 30;
+            padding: 0.6rem 1rem;
+            background: var(--accent);
+            color: var(--bg-deep);
+            font-weight: 800;
+            transform: translateY(-200%);
+            transition: transform 160ms ease;
         }
-
-        .skip-link:focus-visible {
-            transform: translateY(0);
-        }
+        .skip-link:focus-visible { transform: translateY(0); }
 
         :focus-visible {
-            outline: 3px solid rgba(47, 111, 237, 0.38);
-            outline-offset: 3px;
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
         }
 
         .page-shell {
+            position: relative;
+            z-index: 3;
             width: min(calc(100% - 2rem), var(--container));
             margin: 0 auto;
-            padding:
-                max(1.1rem, env(safe-area-inset-top)) 0
-                max(2rem, env(safe-area-inset-bottom));
+            padding: 2.4rem 0 3rem;
         }
 
-        h1,
-        h2,
-        h3,
-        p {
-            margin: 0;
+        h1, h2, h3, p { margin: 0; }
+
+        /* ───────── Banner ───────── */
+
+        .banner {
+            position: relative;
+            border: 1px solid var(--border-strong);
+            background:
+                linear-gradient(180deg, var(--glow-2), transparent 60%),
+                var(--surface);
+            padding: 1.6rem 1.6rem 1.4rem;
+            opacity: 0;
+            animation: bootIn 360ms 60ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
         }
 
-        h1,
-        h2 {
-            scroll-margin-top: 1.25rem;
+        /* corner brackets */
+        .banner::before,
+        .banner::after,
+        .section::before,
+        .section::after {
+            content: "";
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            border: 1px solid var(--accent);
+        }
+        .banner::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
+        .banner::after { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
+
+        .banner-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
         }
 
-        .masthead {
+        .theme-toggle {
+            position: absolute;
+            top: 0.85rem;
+            right: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.45rem 0.7rem 0.45rem 0.6rem;
+            border: 1px solid var(--border-strong);
+            background: var(--bg-deep);
+            color: var(--muted);
+            font-family: inherit;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: color 140ms ease, border-color 140ms ease, background 140ms ease;
+        }
+        .theme-toggle:hover,
+        .theme-toggle:focus-visible {
+            color: var(--accent);
+            border-color: var(--accent);
+            outline: none;
+        }
+        .theme-toggle .glyph {
+            width: 12px;
+            height: 12px;
+            display: inline-block;
+            border-radius: 50%;
+            background:
+                radial-gradient(circle at 35% 35%, var(--accent) 0 50%, transparent 50%),
+                var(--text);
+            box-shadow: inset 0 0 0 1px var(--accent);
+        }
+
+        .banner-tag .dot {
+            display: inline-block;
+            width: 8px; height: 8px;
+            background: var(--accent);
+            box-shadow: 0 0 8px var(--accent);
+            animation: pulse 1.6s ease-in-out infinite;
+        }
+
+        .banner h1 {
+            font-family: "VT323", "JetBrains Mono", monospace;
+            font-size: clamp(2.8rem, 6vw, 4.4rem);
+            font-weight: 400;
+            line-height: 0.95;
+            letter-spacing: 0.01em;
+            color: var(--text);
+            text-shadow: 0 0 24px var(--glow-1);
+        }
+
+        .banner h1 .accent { color: var(--accent); }
+
+        .banner h1 .caret {
+            display: inline-block;
+            width: 0.55ch;
+            height: 1em;
+            margin-left: 0.08em;
+            background: var(--accent);
+            vertical-align: -0.12em;
+            animation: blink 1.05s steps(2, start) infinite;
+        }
+
+        .banner-meta {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 1rem;
             align-items: center;
-            margin-top: 0.45rem;
-            padding: 1.25rem 1.2rem;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-xl);
-            background: var(--surface);
-            box-shadow: var(--shadow);
-            backdrop-filter: blur(14px);
-        }
-
-        .title-block {
-            min-width: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 0.55rem;
-        }
-
-        .title-block h1 {
-            font-family: "Fraunces", serif;
-            font-size: clamp(2rem, 4vw, 3rem);
-            line-height: 0.95;
-            letter-spacing: -0.05em;
-        }
-
-        .title-intro {
-            max-width: 54ch;
-            color: var(--muted);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            font-weight: 500;
+            gap: 1.2rem 1.4rem;
+            margin-top: 1rem;
         }
 
         .header-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.6rem;
-        }
-
-        .stat-pill {
             display: inline-flex;
-            align-items: center;
-            min-height: 38px;
-            padding: 0.5rem 0.72rem;
-            border: 1px solid var(--border);
-            border-radius: 999px;
-            background: var(--surface-strong);
-            color: var(--muted);
-            font-size: 0.82rem;
-            font-weight: 700;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.4rem 1rem;
+            line-height: 1.4;
         }
 
-        .stat-pill strong {
-            margin-right: 0.35rem;
-            color: var(--text);
-            font-size: 0.9rem;
+        .stat-line {
+            display: inline-flex;
+            align-items: baseline;
+            gap: 0.45rem;
+            color: var(--muted);
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            white-space: nowrap;
+        }
+        .stat-line strong {
+            color: var(--accent);
+            font-size: 0.95rem;
+            font-weight: 800;
+            font-variant-numeric: tabular-nums;
         }
 
         .status-block {
             display: inline-flex;
-            flex-wrap: nowrap;
+            flex-wrap: wrap;
+            gap: 0.4rem;
             align-items: center;
-            gap: 0.5rem;
-            width: fit-content;
-            max-width: 100%;
-            overflow-x: auto;
+            padding: 0.35rem 0.5rem;
+            border: 1px dashed var(--border-strong);
+            background: var(--bg-deep);
+        }
+        .status-block img {
+            display: block;
+            filter: var(--status-filter);
+            height: 18px;
         }
 
-        .status-block img {
-            flex: none;
+        .title-intro {
+            margin-top: 0.85rem;
+            color: var(--muted);
+            font-size: 0.82rem;
+            line-height: 1.65;
+            max-width: 60ch;
         }
+        .title-intro::before {
+            content: "$ ";
+            color: var(--accent);
+            font-weight: 800;
+        }
+
+        /* ───────── Sections ───────── */
 
         main {
             display: grid;
-            gap: 1rem;
-            margin-top: 1rem;
+            gap: 1.6rem;
+            margin-top: 1.6rem;
         }
 
-        .section-card {
+        .section {
+            position: relative;
             border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
             background: var(--surface);
-            box-shadow: var(--shadow);
-            backdrop-filter: blur(14px);
-            overflow: hidden;
+            padding: 1.2rem 1.2rem 1.3rem;
+            opacity: 0;
+            animation: bootIn 380ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
         }
+        .section::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; border-color: var(--accent-dim); }
+        .section::after { bottom: -1px; right: -1px; border-left: 0; border-top: 0; border-color: var(--accent-dim); }
 
         .section-head {
-            padding: 1rem 1.2rem 0.85rem;
-            border-bottom: 1px solid var(--border);
-            background: rgba(255, 255, 255, 0.6);
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            margin-bottom: 1rem;
         }
 
         .section-head h2 {
-            font-family: "Fraunces", serif;
-            font-size: clamp(1.3rem, 2.2vw, 1.8rem);
-            letter-spacing: -0.03em;
+            display: inline-flex;
+            align-items: baseline;
+            gap: 0.55rem;
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.88rem;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--text);
+            white-space: nowrap;
+        }
+
+        .section-head h2::before {
+            content: "▍";
+            color: var(--accent);
+            margin-right: 0.05rem;
+        }
+
+        .section-head .count {
+            color: var(--muted);
+            font-weight: 500;
+            font-size: 0.74rem;
+            letter-spacing: 0.18em;
+        }
+
+        .section-head .rule {
+            flex: 1;
+            height: 1px;
+            background: var(--rule);
+            opacity: 0.7;
         }
 
         .service-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, 200px);
-            justify-content: start;
-            gap: 0.85rem;
-            padding: 1rem;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 0;
         }
+
+        /* ───────── Cards ───────── */
 
         .service-card {
+            position: relative;
             display: grid;
-            gap: 0.55rem;
-            min-width: 0;
-            min-height: 116px;
-            padding: 0.95rem;
+            grid-template-columns: 44px minmax(0, 1fr);
+            grid-template-rows: auto auto;
+            column-gap: 0.85rem;
+            row-gap: 0.25rem;
+            align-items: start;
+            min-height: 92px;
+            padding: 0.95rem 1rem;
+            background: transparent;
             border: 1px solid var(--border);
-            border-radius: var(--radius-md);
-            background: var(--surface-strong);
-            text-decoration: none;
-            box-shadow: 0 8px 20px rgba(29, 45, 78, 0.04);
-            transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
-            touch-action: manipulation;
+            margin: -1px 0 0 -1px; /* collapse adjacent borders into a single grid */
+            transition: background 140ms ease, color 140ms ease;
         }
 
-        .service-top {
-            display: grid;
-            grid-template-columns: 38px minmax(0, 1fr);
-            gap: 0.7rem;
-            align-items: center;
-        }
-
-        .service-icon {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 38px;
-            height: 38px;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            background: linear-gradient(180deg, #f6f8fd 0%, #eef3fb 100%);
-            color: var(--accent-deep);
-            font-size: 0.76rem;
-            font-weight: 800;
-            letter-spacing: 0.04em;
-            flex: none;
-            overflow: hidden;
-        }
-
-        .service-icon img {
-            width: 72%;
-            height: 72%;
-            object-fit: contain;
+        .service-card::after {
+            content: "→";
+            position: absolute;
+            top: 0.85rem;
+            right: 1rem;
+            color: var(--dim);
+            font-size: 0.85rem;
+            transition: transform 160ms ease, color 140ms ease;
         }
 
         .service-card:hover,
         .service-card:focus-visible {
-            border-color: #aac0f5;
-            box-shadow: 0 14px 28px rgba(47, 111, 237, 0.12);
-            transform: translateY(-2px);
+            background: var(--surface-2);
+            outline: none;
+        }
+        .service-card:hover::after,
+        .service-card:focus-visible::after {
+            color: var(--accent);
+            transform: translateX(3px);
+        }
+        .service-card:hover .service-icon,
+        .service-card:focus-visible .service-icon {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .service-icon {
+            grid-row: 1 / span 2;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border: 1px solid var(--border-strong);
+            background: var(--bg-deep);
+            color: var(--muted);
+            font-size: 0.74rem;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            overflow: hidden;
+            transition: border-color 140ms ease, color 140ms ease;
+        }
+
+        .service-icon img {
+            width: 78%;
+            height: 78%;
+            object-fit: contain;
+        }
+
+        .service-icon--circle {
+            border-radius: 50%;
+        }
+        .service-icon--circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
         }
 
         .service-name {
-            font-size: 1rem;
-            font-weight: 800;
-            line-height: 1.2;
+            grid-column: 2;
+            font-size: 0.95rem;
+            font-weight: 700;
+            line-height: 1.25;
+            color: var(--text);
+            padding-right: 1.5rem;
             word-break: break-word;
         }
 
+        .service-meta {
+            grid-column: 2;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.45rem 0.7rem;
+            font-size: 0.74rem;
+            color: var(--muted);
+            letter-spacing: 0.02em;
+        }
+
         .service-host {
-            margin-top: auto;
-            color: var(--text);
-            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-            font-size: 0.78rem;
+            color: var(--accent);
             font-weight: 700;
         }
 
         .service-endpoint {
-            color: var(--muted);
-            font-size: 0.78rem;
-            font-weight: 700;
-            letter-spacing: 0.01em;
+            color: var(--dim);
+            font-weight: 500;
         }
+        .service-endpoint .scheme { color: var(--muted); }
+
+        /* ───────── States ───────── */
 
         .state-card {
-            padding: 1rem 1.2rem;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
+            padding: 1.2rem 1.4rem;
+            border: 1px dashed var(--border-strong);
             background: var(--surface);
-            box-shadow: var(--shadow);
             color: var(--muted);
-            font-weight: 600;
         }
+        .state-card::before {
+            content: "» ";
+            color: var(--accent);
+            font-weight: 800;
+        }
+        .state-card.error { color: var(--danger); }
+        .state-card.error::before { color: var(--danger); content: "✕ "; }
 
-        .state-card.error {
-            color: #a23333;
-        }
+        /* ───────── Footer ───────── */
 
         .footnote {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
             gap: 0.75rem;
-            margin-top: 1rem;
-            padding: 0 0.15rem;
-            color: var(--muted);
-            font-size: 0.92rem;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px dashed var(--border);
+            color: var(--dim);
+            font-size: 0.72rem;
+            letter-spacing: 0.04em;
+        }
+        .footnote strong { color: var(--muted); font-weight: 700; }
+
+        /* ───────── Animations ───────── */
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.55; transform: scale(0.82); }
+        }
+        @keyframes bootIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .footnote strong {
-            color: var(--text);
-        }
+        /* ───────── Responsive ───────── */
 
-        @media (max-width: 760px) {
-            .page-shell {
-                width: min(calc(100% - 1rem), var(--container));
-            }
-
-            .masthead {
-                align-items: start;
-            }
-
-            .service-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                justify-content: stretch;
-            }
-        }
-
-        @media (max-width: 520px) {
-            .service-grid {
-                grid-template-columns: 1fr;
-            }
+        @media (max-width: 720px) {
+            .page-shell { padding: 1.4rem 0 2rem; }
+            .banner { padding: 1.2rem 1.1rem; }
+            .service-grid { grid-template-columns: 1fr; }
+            .section-head .count { display: none; }
         }
 
         @media (prefers-reduced-motion: reduce) {
-            html {
-                scroll-behavior: auto;
-            }
-
-            *,
-            *::before,
-            *::after {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
                 animation: none !important;
                 transition: none !important;
             }
+            .banner, .section { opacity: 1 !important; }
+            .banner h1 .caret { opacity: 1; }
         }
     </style>
 </head>
 
 <body>
-    <a class="skip-link" href="#content">Skip to content</a>
+    <a class="skip-link" href="#content">skip to content</a>
     <div class="page-shell">
-        <header class="masthead">
-            <div class="title-block">
-                <h1 translate="no">Xavier's Services</h1>
+        <header class="banner">
+            <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                <span class="glyph" aria-hidden="true"></span>
+                <span class="label" id="theme-toggle-label">dark</span>
+            </button>
+            <div class="banner-tag"><span class="dot" aria-hidden="true"></span> xavier.lab — service registry</div>
+            <h1 translate="no">xavier<span class="accent">/</span>services<span class="caret" aria-hidden="true"></span></h1>
+            <div class="banner-meta">
                 <div class="status-block" aria-label="Status">
-                    <img src="https://healthchecks.io/badge/ceb5a174-ca12-4e29-a004-b8bcc4/5aLzBxll/rclone.svg"
-                        alt="Healthchecks badge for rclone status">
+                    <img src="https://healthchecks.io/badge/ceb5a174-ca12-4e29-a004-b8bcc4/5aLzBxll/rclone.svg" alt="rclone">
                     <img src="https://healthchecks.io/badge/ceb5a174-ca12-4e29-a004-b8bcc4/6SmW8tbH-2/machine.svg" alt="machine">
                     <img src="https://healthchecks.io/badge/ceb5a174-ca12-4e29-a004-b8bcc4/KaR_lN7B-2/netconfig.svg" alt="netconfig">
                 </div>
-                <p class="title-intro" id="title-intro"></p>
                 <div class="header-meta" id="header-meta" aria-label="Service statistics"></div>
             </div>
+            <p class="title-intro" id="title-intro"></p>
         </header>
 
         <main id="content">
-            <div class="state-card" id="loading-state">Loading services...</div>
+            <div class="state-card" id="loading-state">awaiting services.json...</div>
         </main>
 
         <footer class="footnote">
-            <p><strong>External links</strong> open in a new tab.</p>
+            <p><strong>external links</strong> open in a new tab</p>
             <p id="footer-copyright"></p>
         </footer>
     </div>
@@ -393,32 +654,25 @@
         function getServiceDetails(service) {
             const parsed = new URL(service.url);
             const host = parsed.hostname.split(".")[0] || parsed.hostname;
-            const scheme = parsed.protocol.replace(":", "").toUpperCase();
-            const port = parsed.port ? `:${parsed.port}` : "";
-            const path = parsed.pathname && parsed.pathname !== "/" ? parsed.pathname : "";
+            const scheme = parsed.protocol.replace(":", "").toLowerCase();
+            const defaultPort = parsed.protocol === "https:" ? "443"
+                : parsed.protocol === "http:" ? "80" : "";
+            const port = `:${parsed.port || defaultPort}`;
 
             return {
                 host,
-                endpoint: `${port}${path}`,
+                endpoint: port,
                 scheme
             };
         }
 
         function getServiceInitials(name) {
             const words = String(name).trim().split(/[\s_-]+/).filter(Boolean);
-            if (!words.length) {
-                return "?";
-            }
+            if (!words.length) return "?";
 
             const capitals = String(name).match(/[A-Z0-9]/g) || [];
-            if (capitals.length >= 2) {
-                return capitals.slice(0, 2).join("");
-            }
-
-            if (words.length >= 2) {
-                return `${words[0][0]}${words[1][0]}`.toUpperCase();
-            }
-
+            if (capitals.length >= 2) return capitals.slice(0, 2).join("");
+            if (words.length >= 2) return `${words[0][0]}${words[1][0]}`.toUpperCase();
             return words[0].slice(0, 2).toUpperCase();
         }
 
@@ -431,11 +685,9 @@
             card.rel = "noreferrer noopener";
             card.setAttribute("aria-label", `Open ${service.name} in a new tab`);
 
-            const top = document.createElement("div");
-            top.className = "service-top";
-
             const icon = document.createElement("div");
             icon.className = "service-icon";
+            if (service.iconShape === "circle") icon.classList.add("service-icon--circle");
             icon.setAttribute("aria-hidden", "true");
 
             if (service.icon) {
@@ -451,25 +703,37 @@
             name.className = "service-name";
             name.textContent = service.name;
 
-            top.append(icon, name);
+            const meta = document.createElement("p");
+            meta.className = "service-meta";
 
-            const host = document.createElement("p");
-            host.className = "service-host";
-            host.textContent = details.host;
+            const hostLabel = service.host || (details.host !== "www" ? details.host : "");
+            if (hostLabel) {
+                const h = document.createElement("span");
+                h.className = "service-host";
+                h.textContent = hostLabel;
+                meta.appendChild(h);
+            }
 
-            const endpoint = document.createElement("p");
-            endpoint.className = "service-endpoint";
-            endpoint.textContent = `${details.scheme} · ${details.endpoint}`;
+            if (details.endpoint) {
+                const e = document.createElement("span");
+                e.className = "service-endpoint";
+                const scheme = document.createElement("span");
+                scheme.className = "scheme";
+                scheme.textContent = details.scheme;
+                e.append(scheme, document.createTextNode(details.endpoint));
+                meta.appendChild(e);
+            }
 
-            card.append(top, host, endpoint);
+            card.append(icon, name, meta);
             return card;
         }
 
-        function createSection(group) {
+        function createSection(group, idx) {
             const sectionId = `${toSlug(group.title)}-heading`;
             const section = document.createElement("section");
-            section.className = "section-card";
+            section.className = "section";
             section.setAttribute("aria-labelledby", sectionId);
+            section.style.animationDelay = `${120 + idx * 80}ms`;
 
             const head = document.createElement("div");
             head.className = "section-head";
@@ -478,14 +742,20 @@
             heading.id = sectionId;
             heading.textContent = group.title;
 
-            head.appendChild(heading);
+            const count = document.createElement("span");
+            count.className = "count";
+            count.textContent = `[${String(group.services.length).padStart(2, "0")} svc]`;
+
+            const rule = document.createElement("span");
+            rule.className = "rule";
+            rule.setAttribute("aria-hidden", "true");
+
+            head.append(heading, count, rule);
 
             const grid = document.createElement("div");
             grid.className = "service-grid";
 
-            group.services.forEach((service) => {
-                grid.appendChild(createServiceCard(service));
-            });
+            group.services.forEach((service) => grid.appendChild(createServiceCard(service)));
 
             section.append(head, grid);
             return section;
@@ -493,51 +763,38 @@
 
         function renderStats(groups) {
             const meta = document.getElementById("header-meta");
-            const totalServices = groups.reduce((sum, group) => sum + group.services.length, 0);
+            const totalServices = groups.reduce((s, g) => s + g.services.length, 0);
             const totalEnvironments = groups.length;
             const totalHosts = new Set(
-                groups.flatMap((group) =>
-                    group.services.map((service) => getServiceDetails(service).host)
-                )
+                groups.flatMap((g) => g.services.map((s) => getServiceDetails(s).host))
             ).size;
 
             const stats = [
-                { value: totalServices, label: "services" },
-                { value: totalEnvironments, label: "environments" },
+                { value: totalServices, label: "svc" },
+                { value: totalEnvironments, label: "env" },
                 { value: totalHosts, label: "hosts" }
             ];
 
             meta.replaceChildren(
                 ...stats.map((stat) => {
-                    const pill = document.createElement("div");
-                    pill.className = "stat-pill";
+                    const line = document.createElement("span");
+                    line.className = "stat-line";
                     const strong = document.createElement("strong");
-                    strong.textContent = String(stat.value);
-                    pill.append(strong, document.createTextNode(stat.label));
-                    return pill;
+                    strong.textContent = String(stat.value).padStart(2, "0");
+                    line.append(strong, document.createTextNode(stat.label));
+                    return line;
                 })
             );
         }
 
         function renderIntro(groups) {
             const intro = document.getElementById("title-intro");
-            const titles = groups.map((group) => group.title).filter(Boolean);
-
+            const titles = groups.map((g) => g.title).filter(Boolean);
             if (!titles.length) {
-                intro.textContent = "A compact directory for your services.";
+                intro.textContent = "registry empty";
                 return;
             }
-
-            let environmentText = "";
-            if (titles.length === 1) {
-                environmentText = titles[0];
-            } else if (titles.length === 2) {
-                environmentText = `${titles[0]} and ${titles[1]}`;
-            } else {
-                environmentText = `${titles.slice(0, -1).join(", ")}, and ${titles.at(-1)}`;
-            }
-
-            intro.textContent = `A compact directory for dashboards and utilities across ${environmentText}.`;
+            intro.textContent = `routing dashboards & utilities across ${titles.join(" / ").toLowerCase()}`;
         }
 
         function renderState(message, isError = false) {
@@ -551,43 +808,64 @@
         function renderFooterYear() {
             const footer = document.getElementById("footer-copyright");
             const currentYear = new Date().getFullYear();
-            footer.textContent = `© 2024-${currentYear} Xavier's Services. All rights reserved.`;
+            footer.textContent = `© 2024–${currentYear} xavier.lab`;
         }
 
         async function loadServices() {
             try {
                 const response = await fetch("./services.json", { cache: "no-store" });
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}`);
-                }
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
                 const data = await response.json();
                 const groups = Array.isArray(data) ? data : [];
 
                 if (!groups.length) {
-                    renderState("No services configured.");
+                    renderState("no services configured");
                     return;
                 }
 
                 main.innerHTML = "";
                 renderIntro(groups);
                 renderStats(groups);
-                groups.forEach((group) => {
-                    if (!group || !Array.isArray(group.services) || !group.services.length) {
-                        return;
-                    }
-                    main.appendChild(createSection(group));
+                groups.forEach((group, idx) => {
+                    if (!group || !Array.isArray(group.services) || !group.services.length) return;
+                    main.appendChild(createSection(group, idx));
                 });
 
-                if (!main.children.length) {
-                    renderState("No services configured.");
-                }
+                if (!main.children.length) renderState("no services configured");
             } catch (error) {
-                renderState("Failed to load services.json.", true);
+                renderState("failed to load services.json", true);
                 console.error(error);
             }
         }
 
+        function currentTheme() {
+            if (document.documentElement.dataset.theme) {
+                return document.documentElement.dataset.theme;
+            }
+            return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+        }
+
+        function setThemeLabel() {
+            const label = document.getElementById("theme-toggle-label");
+            label.textContent = currentTheme();
+        }
+
+        function initThemeToggle() {
+            const btn = document.getElementById("theme-toggle");
+            setThemeLabel();
+            btn.addEventListener("click", () => {
+                const next = currentTheme() === "light" ? "dark" : "light";
+                document.documentElement.dataset.theme = next;
+                localStorage.setItem("theme", next);
+                setThemeLabel();
+            });
+            window.matchMedia("(prefers-color-scheme: light)").addEventListener("change", () => {
+                if (!localStorage.getItem("theme")) setThemeLabel();
+            });
+        }
+
+        initThemeToggle();
         renderFooterYear();
         loadServices();
     </script>
