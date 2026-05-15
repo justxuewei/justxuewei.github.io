@@ -24,11 +24,6 @@
         "url": "http://devhome.home-env.nxw.name:6842"
       },
       {
-        "name": "Qbit",
-        "icon": "./icons/qbittorrent.svg",
-        "url": "http://devhome.home-env.nxw.name:8080"
-      },
-      {
         "name": "MetacubeXD",
         "icon": "./icons/metacubexd.svg",
         "url": "http://devhome.home-env.nxw.name:28192"
@@ -44,9 +39,14 @@
         "url": "http://devhome.home-env.nxw.name:5212"
       },
       {
-        "name": "DDNS",
-        "icon": "./icons/ddns-go.ico",
-        "url": "http://devhome.home-env.nxw.name:9876"
+        "name": "Qbit",
+        "icon": "./icons/qbittorrent.svg",
+        "url": "http://devhome.home-env.nxw.name:8080"
+      },
+      {
+        "name": "Prometheus",
+        "icon": "./icons/prometheus.svg",
+        "url": "http://devhome.home-env.nxw.name:9090"
       },
       {
         "name": "OpenList",
@@ -54,20 +54,15 @@
         "url": "http://devhome.home-env.nxw.name:5244"
       },
       {
-        "name": "Prometheus",
-        "icon": "./icons/prometheus.svg",
-        "url": "http://devhome.home-env.nxw.name:9090"
+        "name": "DDNS",
+        "icon": "./icons/ddns-go.ico",
+        "url": "http://devhome.home-env.nxw.name:9876"
       }
     ]
   },
   {
     "title": "Ant Group",
     "services": [
-      {
-        "name": "noVNC",
-        "icon": "./icons/novnc.svg",
-        "url": "http://devant.ant-env.nxw.name:6080/vnc.html"
-      },
       {
         "name": "NekoMaster",
         "icon": "./icons/neko-master.png",
@@ -82,6 +77,11 @@
         "name": "CopilotDisplay",
         "icon": "./icons/codis.svg",
         "url": "http://devant.ant-env.nxw.name:8420"
+      },
+      {
+        "name": "noVNC",
+        "icon": "./icons/novnc.svg",
+        "url": "http://devant.ant-env.nxw.name:6080/vnc.html"
       }
     ]
   },
