@@ -5,6 +5,7 @@
       {
         "name": "Xavier's Blog",
         "icon": "./icons/xavier-blog.jpeg",
+        "host": "devrn",
         "url": "https://www.nxw.name"
       }
     ]
