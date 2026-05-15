@@ -38,11 +38,6 @@
         "url": "http://devhome.home-env.nxw.name:9876"
       },
       {
-        "name": "NewAPI",
-        "icon": "./icons/new-api.png",
-        "url": "http://devhome.home-env.nxw.name:34875"
-      },
-      {
         "name": "OpenList",
         "icon": "./icons/openlist.svg",
         "url": "http://devhome.home-env.nxw.name:5244"
