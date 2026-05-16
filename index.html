@@ -7,13 +7,7 @@
     <meta name="theme-color" content="#0b0d0a" media="(prefers-color-scheme: dark)">
     <meta name="theme-color" content="#f1ead8" media="(prefers-color-scheme: light)">
     <script>
-        // apply theme before paint to avoid flash
-        (function () {
-            const saved = localStorage.getItem("theme");
-            if (saved === "light" || saved === "dark") {
-                document.documentElement.dataset.theme = saved;
-            }
-        })();
+        // default: follow system. Manual toggle applies for current visit only.
     </script>
     <title>xavier.lab // services</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -953,11 +947,10 @@
             btn.addEventListener("click", () => {
                 const next = currentTheme() === "light" ? "dark" : "light";
                 document.documentElement.dataset.theme = next;
-                localStorage.setItem("theme", next);
                 setThemeLabel();
             });
             window.matchMedia("(prefers-color-scheme: light)").addEventListener("change", () => {
-                if (!localStorage.getItem("theme")) setThemeLabel();
+                if (!document.documentElement.dataset.theme) setThemeLabel();
             });
         }
 
