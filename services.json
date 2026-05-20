@@ -24,6 +24,12 @@
         "url": "http://devhome.home-env.nxw.name:6842"
       },
       {
+        "name": "VaultWarden",
+        "icon": "./icons/bitwarden.svg",
+        "host": "devhome",
+        "url": "https://password-home-env.nxw.name/"
+      },
+      {
         "name": "MetacubeXD",
         "icon": "./icons/metacubexd.svg",
         "url": "http://devhome.home-env.nxw.name:28192"
