@@ -7,6 +7,12 @@
         "icon": "./icons/xavier-blog.jpeg",
         "host": "devrn",
         "url": "https://www.nxw.name"
+      },
+      {
+        "name": "Image Uploader",
+        "icon": "./icons/xavier-blog.jpeg",
+        "host": "devrn",
+        "url": "https://imgup.nxw.name"
       }
     ]
   },
