@@ -20,20 +20,15 @@
     "title": "HomeLab",
     "services": [
       {
-        "name": "ProxmoxVE",
-        "icon": "./icons/proxmox.svg",
-        "url": "https://pve.home-env.nxw.name:8006"
+        "name": "Chromium",
+        "icon": "./icons/chromium.png",
+        "host": "devhome",
+        "url": "https://chromium-home-env.nxw.name"
       },
       {
         "name": "Grafana",
         "icon": "./icons/grafana.svg",
         "url": "http://devhome.home-env.nxw.name:6842"
-      },
-      {
-        "name": "VaultWarden",
-        "icon": "./icons/bitwarden.svg",
-        "host": "devhome",
-        "url": "https://password-home-env.nxw.name/"
       },
       {
         "name": "MetacubeXD",
@@ -56,6 +51,12 @@
         "url": "http://devhome.home-env.nxw.name:8080"
       },
       {
+        "name": "VaultWarden",
+        "icon": "./icons/bitwarden.svg",
+        "host": "devhome",
+        "url": "https://password-home-env.nxw.name/"
+      },
+      {
         "name": "Prometheus",
         "icon": "./icons/prometheus.svg",
         "url": "http://devhome.home-env.nxw.name:9090"
@@ -69,6 +70,11 @@
         "name": "DDNS",
         "icon": "./icons/ddns-go.ico",
         "url": "http://devhome.home-env.nxw.name:9876"
+      },
+      {
+        "name": "ProxmoxVE",
+        "icon": "./icons/proxmox.svg",
+        "url": "https://pve.home-env.nxw.name:8006"
       }
     ]
   },
