@@ -103,7 +103,8 @@
       {
         "name": "AdGuard",
         "icon": "./icons/adguard-home.svg",
-        "url": "http://devaa.usres-env.nxw.name:11053"
+        "host": "devtx",
+        "url": "http://192.168.101.1:11053/"
       }
     ]
   }
