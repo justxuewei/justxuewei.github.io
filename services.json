@@ -19,6 +19,12 @@
         "icon": "./icons/pulsebox.svg",
         "host": "devrn",
         "url": "https://pulsebox.nxw.name"
+      },
+      {
+        "name": "Surgio",
+        "icon": "./icons/surgio.svg",
+        "host": "devrn",
+        "url": "https://surgio.nxw.name"
       }
     ]
   },
