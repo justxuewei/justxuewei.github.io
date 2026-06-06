@@ -10,9 +10,15 @@
       },
       {
         "name": "Image Uploader",
-        "icon": "./icons/xavier-blog.jpeg",
+        "icon": "./icons/paomedia-cloud-up.svg",
         "host": "devrn",
         "url": "https://imgup.nxw.name"
+      },
+      {
+        "name": "Pulsebox",
+        "icon": "./icons/pulsebox.svg",
+        "host": "devrn",
+        "url": "https://pulsebox.nxw.name"
       }
     ]
   },
