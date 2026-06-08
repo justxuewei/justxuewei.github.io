@@ -92,6 +92,12 @@
         "url": "https://ddns.inxw.net"
       },
       {
+        "name": "Renewlet",
+        "icon": "./icons/renewlet.svg",
+        "host": "devhome",
+        "url": "https://renewlet.inxw.net"
+      },
+      {
         "name": "ProxmoxVE",
         "icon": "./icons/proxmox.svg",
         "host": "devpve",
