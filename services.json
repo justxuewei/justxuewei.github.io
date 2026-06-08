@@ -94,7 +94,8 @@
       {
         "name": "ProxmoxVE",
         "icon": "./icons/proxmox.svg",
-        "url": "https://pve.home-env.nxw.name:8006"
+        "host": "devpve",
+        "url": "https://pve.inxw.net"
       }
     ]
   },
