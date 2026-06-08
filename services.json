@@ -35,53 +35,61 @@
         "name": "Chromium",
         "icon": "./icons/chromium.png",
         "host": "devhome",
-        "url": "https://chromium-home-env.nxw.name"
+        "url": "https://browser.inxw.net"
       },
       {
         "name": "Grafana",
         "icon": "./icons/grafana.svg",
-        "url": "http://devhome.home-env.nxw.name:6842"
+        "host": "devhome",
+        "url": "https://grafana.inxw.net"
       },
       {
         "name": "MetacubeXD",
         "icon": "./icons/metacubexd.svg",
-        "url": "http://devhome.home-env.nxw.name:28192"
+        "host": "devhome",
+        "url": "https://metacubexd.inxw.net"
       },
       {
         "name": "NekoMaster",
         "icon": "./icons/neko-master.png",
+        "host": "devhome",
         "url": "http://devhome.home-env.nxw.name:20482"
       },
       {
         "name": "Cloudreve",
         "icon": "./icons/cloudreve.svg",
-        "url": "http://devhome.home-env.nxw.name:5212"
+        "host": "devhome",
+        "url": "https://storage.inxw.net"
       },
       {
         "name": "Qbit",
         "icon": "./icons/qbittorrent.svg",
-        "url": "http://devhome.home-env.nxw.name:8080"
+        "host": "devhome",
+        "url": "https://qbit.inxw.net"
       },
       {
         "name": "VaultWarden",
         "icon": "./icons/bitwarden.svg",
         "host": "devhome",
-        "url": "https://password-home-env.nxw.name/"
+        "url": "https://password.inxw.net"
       },
       {
         "name": "Prometheus",
         "icon": "./icons/prometheus.svg",
-        "url": "http://devhome.home-env.nxw.name:9090"
+        "host": "devhome",
+        "url": "https://prometheus.inxw.net"
       },
       {
         "name": "OpenList",
         "icon": "./icons/openlist.svg",
-        "url": "http://devhome.home-env.nxw.name:5244"
+        "host": "devhome",
+        "url": "https://openlist.inxw.net"
       },
       {
         "name": "DDNS",
         "icon": "./icons/ddns-go.ico",
-        "url": "http://devhome.home-env.nxw.name:9876"
+        "host": "devhome",
+        "url": "https://ddns.inxw.net"
       },
       {
         "name": "ProxmoxVE",
