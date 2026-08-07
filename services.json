@@ -50,12 +50,6 @@
         "url": "http://metacubexd.inxw.net"
       },
       {
-        "name": "NekoMaster",
-        "icon": "./icons/neko-master.png",
-        "host": "devhome",
-        "url": "http://devhome.home-env.nxw.name:20482"
-      },
-      {
         "name": "Immich",
         "icon": "./icons/immich.svg",
         "host": "devhome",
@@ -96,6 +90,12 @@
         "icon": "./icons/ddns-go.ico",
         "host": "devhome",
         "url": "https://ddns.inxw.net"
+      },
+      {
+        "name": "NekoMaster",
+        "icon": "./icons/neko-master.png",
+        "host": "devhome",
+        "url": "http://devhome.home-env.nxw.name:20482"
       },
       {
         "name": "Renewlet",
