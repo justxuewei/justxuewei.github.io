@@ -56,6 +56,12 @@
         "url": "http://devhome.home-env.nxw.name:20482"
       },
       {
+        "name": "Immich",
+        "icon": "./icons/immich.svg",
+        "host": "devhome",
+        "url": "https://immich.inxw.net"
+      },
+      {
         "name": "Cloudreve",
         "icon": "./icons/cloudreve.svg",
         "host": "devhome",
